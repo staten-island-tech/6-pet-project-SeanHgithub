@@ -22,13 +22,32 @@ Sean = Hero("Sean", 600, ["Sword"])
 Sean.buy("Axe")
 print(Sean.__dict__) """
 class Pet:
-    def __init__(self, name, happiness):
+    def __init__(self, name, happiness, hunger, energetic, dirty):
         self.name = name
         self.happiness = happiness
+        self.hunger = hunger
+        self.energetic = energetic
+        self.dirty = dirty
     def play(self, happy, game):
-        self.__happiness += happy
-        
+        self.happiness += happy
+        print(f"{self.name} is playing {game}")
     def show_status(self):
-        print(f"{self.name}'s happiness is now {self.__happiness}")
-Snowball = Pet("Snowball", 67/100)
+        print(f"{self.name}'s happiness is now {self.happiness}")
+    def sleep(self, energy):
+        x = int(input(f"how many hours will {self.name} sleep?(1-10)"))
+        x *=10
+        energy = x
+        self.energetic += energy
+    def hunger(self, food):
+        x = int(input(f"how many calories do you want to feed {self.name}(50-500)"))
+        x %= 5 
+        food = x
+        self.hunger += food
+    def dirty(self, clean, method):
+        self.dirty += clean
+        print(f(""))
+
+Snowball = Pet("Snowball", 67)
+Snowball.play(20, "fetch")
+Snowball.show_status()
 
