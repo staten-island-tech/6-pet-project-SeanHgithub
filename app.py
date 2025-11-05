@@ -22,12 +22,14 @@ Sean = Hero("Sean", 600, ["Sword"])
 Sean.buy("Axe")
 print(Sean.__dict__) """
 class Dog:
-    def __init__(self, name, happiness, hunger, energetic, dirty):
+    def __init__(self, name, happiness, hunger, energetic, dirty, day):
         self.name = name
         self.happiness = happiness
         self.hunger = hunger
         self.energetic = energetic
         self.dirty = dirty
+        self.day = day
+        self.alive = True
     def play(self, happy, game):
         y = input(f"What do you want to play with {self.name}?(fetch, tug of war, hide and seek)")
         if y == "fetch":
@@ -41,17 +43,14 @@ class Dog:
         self.game = y
         self.happiness += happy
         print(f"{self.name} played {game} and her happiness is {self.happiness}")
-
-
-
-
     def show_status(self):
-        print(f"{self.name}: {self.__dict__}")
+           print(f"{self.name}: {self.__dict__}")
 
 
 
-    def sleep(self, energy,):
+    def sleep(self, energy, day):
         z = 0
+        self.day = day
         y = input(f"where will {self.name} sleep?(bed, chair, floor, lawn)")
         if y == "bed":
             z = 100
@@ -70,16 +69,15 @@ class Dog:
         t *= 0.5
         energy = t
         self.energetic += energy
-
-
+        day += 1
 
     def hunger(self, cals, food):
         self.food = food
-        y = input(f"What do you want to feed {self.name}?(chicken, pizza, bread, crackers)")
+        y = input(f"What do you want to feed {self.name}?(chicken, peanut butter, bread, crackers)")
         self.cals = cals
         if y == "chicken":
             cals = 100
-        elif y == "pizza":
+        elif y == "peanut butter":
             cals = 75
         elif y == "bread":
             cals = 50
@@ -109,9 +107,31 @@ class Dog:
         self.method = x
         self.dirty += clean
         print(f"you {self.method}ed {self.name} and her cleanliness is now {self.dirty} ")
+    def death(self, reason):
+         print(f"You let {self.name} die from {reason} after {self.day} day(s)")
+    def check_death(self):
+        if self.hunger == 0:
+            self.death("starvation")
+        elif self.dirty == 0:
+            self.death("filthy")
+    def Day_1(self):
+        y = input(f"where will {self.name} sleep?(bed, chair, floor, lawn)")
+        if y == "bed":
+            print(f"{x} slept very good, great job.")
+        elif y == "chair":
+            print(f"{x} slept well, good job.")
+        elif y == "floor":
+            print(f"{x} slept ok, but if it keeps up, there will be consequences.")
+        elif y == "lawn":
+            self.death("Freezed")
+    def check_win(self):
+        if self.day == 20 and self.alive == True:
+            print(f"{self.name} survived for 2 weeks and is ready to go to the vet. CONGRATULATIONS!")
+    def background(self)
+        story = input("You found a stray dog in the freezing rain and took it in. You must foster her over the next two weeks by feeding, cleaning, and playing with the dog, as well as giving it a place to sleep. Do you accept this challenge?")
+    if story == "yes":
 
-x = input("What do you want to name your dog?")
-x = Dog(f"{x}", 100, 100, 100, 100)
-x.show_status()
 
-
+begin = input("........Boom!, the door slams behind you as you bring her in, day 1 begins......")
+x = input("What do you want to name your new dog?")
+x = Dog(f"{x}", 0, 0, 0, 0, 0)
