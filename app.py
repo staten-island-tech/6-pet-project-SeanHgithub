@@ -114,24 +114,46 @@ class Dog:
             self.death("starvation")
         elif self.dirty == 0:
             self.death("filthy")
+        elif self.happiness == 0:
+            self.death("depression")
+        elif self.energetic == 0:
+            self.death("sleep deprivation")
     def Day_1(self):
-        y = input(f"where will {self.name} sleep?(bed, chair, floor, lawn)")
-        if y == "bed":
-            print(f"{x} slept very good, great job.")
-        elif y == "chair":
-            print(f"{x} slept well, good job.")
-        elif y == "floor":
-            print(f"{x} slept ok, but if it keeps up, there will be consequences.")
-        elif y == "lawn":
-            self.death("Freezed")
+        y = False
+        while y == False:
+            y = input(f"where will {self.name} sleep?(bed, chair, floor, lawn)")
+            if y == "bed":
+                print(f"{self.name} slept very good, great job.")
+                y = True
+            elif y == "chair":
+                print(f"{self.name} slept well, good job.")
+                y = True
+            elif y == "floor":
+                print(f"{self.name} slept ok, but if it keeps up, there will be consequences.")
+                y = True
+            elif y == "lawn":
+                self.death("Freezed")
+                y = True
+            else:
+                print("Invalid response, try again. (bed, chair, floor, lawn)")
+        
+        y = False
+                
     def check_win(self):
         if self.day == 20 and self.alive == True:
             print(f"{self.name} survived for 2 weeks and is ready to go to the vet. CONGRATULATIONS!")
-    def background(self)
+    def background(self):
         story = input("You found a stray dog in the freezing rain and took it in. You must foster her over the next two weeks by feeding, cleaning, and playing with the dog, as well as giving it a place to sleep. Do you accept this challenge?")
-    if story == "yes":
+        if story.lower == "yes":
+            print("........Boom!, the door slams behind you as you bring her in, day 1 begins......")
+        elif story.lower == "no":
+            print("Ok, if you must.")
+        else:
+            print("Sorry, try again.(yes/no)")
+            input(story)
 
 
-begin = input("........Boom!, the door slams behind you as you bring her in, day 1 begins......")
+
 x = input("What do you want to name your new dog?")
 x = Dog(f"{x}", 0, 0, 0, 0, 0)
+x.Day_1()
