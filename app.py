@@ -31,7 +31,7 @@ class Dog:
         self.dirty = dirty
         self.day = day
         self.alive = True
-    def play(self, happy, game):
+    def play(self):
         y = input(f"What do you want to play with {self.name}?(fetch, tug of war, hide and seek)")
         if y == "fetch":
             happy = 100
@@ -41,9 +41,8 @@ class Dog:
             happy = 20
         else:
             print(f"invalid action, you won't be able to feed {self.name} again until tomorrow(sorry)")
-        self.game = y
         self.happiness += happy
-        print(f"{self.name} played {game} and her happiness is {self.happiness}")
+        print(f"{self.name} played {y} and her happiness is {self.happiness}")
     def show_status(self):
            print(f"{self.name}: {self.__dict__}")
 
@@ -72,7 +71,7 @@ class Dog:
         self.energetic += energy
         day += 1
 
-    def hunger(self):
+    def feed(self):
         y = input(f"What do you want to feed {self.name}?(chicken, peanut butter, bread, crackers)")
         if y == "chicken":
             self.hunger += random.randint(60,80)
@@ -88,8 +87,7 @@ class Dog:
     
     
     
-    def dirty(self, clean, method):
-        self.method = method
+    def dirty(self):
         x = input(f"How do you want to clean {self.name}?(bath, brush, scrub, shampoo)")
         if x == "bath":
             clean = 100
@@ -101,9 +99,8 @@ class Dog:
             clean = 25
         else:
             print(f"invalid action, you won't be able to clean {self.name} again until tomorrow(sorry)")
-        self.method = x
         self.dirty += clean
-        print(f"you {self.method}ed {self.name} and her cleanliness is now {self.dirty} ")
+        print(f"you {x}ed {self.name} and her cleanliness is now {self.dirty} ")
     def death(self, reason):
          print(f"You let {self.name} die from {reason} after {self.day} day(s)")
     def check_death(self):
@@ -116,6 +113,7 @@ class Dog:
         elif self.energetic == 0:
             self.death("sleep deprivation")
     def Day_1(self):
+        self.day = 1
         y = False
         while y == False:
             y = input(f"{self.name} is exhausted and cold, where will she sleep today?(bed, chair, floor, lawn)")
@@ -142,12 +140,35 @@ class Dog:
         
         y = False
     def Day_2(self):
+        self.day = 2
         print(f".....Day 2 begins. {self.name} is starving, get her something to eat.")
-        self.hunger()
+        self.feed()
+
     
     def check_win(self):
         if self.day == 20 and self.alive == True:
             print(f"{self.name} survived for 2 weeks and is ready to go to the vet. CONGRATULATIONS!")
+    def Day_count(self):
+        priorities = []
+        self.check_death()
+        self.day += 1
+        if self.hunger < 75:
+            priorities.append("feed")
+        elif self.dirty < 75:
+            priorities.append("clean")
+        elif self.happiness < 75:
+            priorities.append("play")
+        priority = random.choice(priorities)
+        if priority == "feed":
+            print(f"{self.name} is hungry.")
+            self.feed()
+        elif priority == "play":
+            print(f"{self.name} is sad, play with her.")
+            self.play()
+        elif priority == "clean":
+            print(f"{self.name} is dirty, clean her.")
+            self.dirty()
+        
 
 
 
@@ -162,4 +183,5 @@ elif story == "no":
     print("Ok, if you must.")
 else:
     print("Sorry, try again.(yes/no)")
+
 
