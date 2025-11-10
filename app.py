@@ -101,8 +101,11 @@ class Dog:
             print(f"invalid action, you won't be able to clean {self.name} again until tomorrow(sorry)")
         self.dirty += clean
         print(f"you {x}ed {self.name} and her cleanliness is now {self.dirty} ")
+        if self.dirty > 100:
+            
     def death(self, reason):
          print(f"You let {self.name} die from {reason} after {self.day} day(s)")
+         exit()
     def check_death(self):
         if self.hunger == 0:
             self.death("starvation")
@@ -143,6 +146,7 @@ class Dog:
         self.day = 2
         print(f".....Day 2 begins. {self.name} is starving, get her something to eat.")
         self.feed()
+        self.Day_count()
 
     
     def check_win(self):
