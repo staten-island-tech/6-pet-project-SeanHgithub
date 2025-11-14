@@ -42,9 +42,9 @@ class Dog:
         else:
             print(f"invalid action, you won't be able to feed {self.name} again until tomorrow(sorry)")
         self.happiness += happy
-        print(f"{self.name} played {y} and her happiness is {self.happiness}")
         if self.happiness > 100:
             self.happiness = 100
+        print(f"{self.name} played {y} and her happiness is {self.happiness}")
     def show_status(self):
            print(f"{self.name}: {self.__dict__}")
 
@@ -63,7 +63,6 @@ class Dog:
             z += random.randint(10,20)
         else:
             print(f"invalid action, {self.name} won't be able to sleep again until tomorrow(sorry)")
-            print(f"{self.name} slept on the {y} for {x/10} hours and energy is at {self.energetic}")
         x = int(input(f"how many hours will {self.name} sleep?(1-10)"))
         x *=10
         t = x + z
@@ -72,6 +71,8 @@ class Dog:
         day += 1
         if self.energetic > 100:
             self.energetic = 100
+        print(f"{self.name} slept on the {y} for {x} hours and her energy is at {self.energetic}")
+
         self.Day_count()
     def feed(self):
         y = input(f"What do you want to feed {self.name}?(chicken, peanut butter, bread, crackers)")
@@ -85,9 +86,10 @@ class Dog:
             self.hunger += random.randint(1,20)
         else:
             print(f"invalid action, you won't be able to feed {self.name} again until tomorrow(sorry)")
-        print(f"you fed {self.name} {y} and her hunger is now {self.hunger}")
         if self.hunger > 100:
             self.hunger = 100
+        print(f"you fed {self.name} {y} and her hunger is now {self.hunger}")
+
     
     
     def dirty(self):
@@ -103,9 +105,9 @@ class Dog:
         else:
             print(f"invalid action, you won't be able to clean {self.name} again until tomorrow(sorry)")
         self.dirty += clean
-        print(f"you {x}ed {self.name} and her cleanliness is now {self.dirty} ")
         if self.dirty > 100:
             self.dirty = 100
+        print(f"you {x}ed {self.name} and her cleanliness is now {self.dirty} ")
             
     def death(self, reason):
          print(f"You let {self.name} die from {reason} after {self.day} day(s)")
