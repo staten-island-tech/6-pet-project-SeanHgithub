@@ -153,31 +153,45 @@ class Dog:
 
     
     def check_win(self):
-        if self.day == 20 and self.alive == True:
+        if self.day == 14 and self.alive == True:
             print(f"{self.name} survived for 2 weeks and is ready to go to the vet. CONGRATULATIONS!")
     def Day_count(self):
+        Day_begin = input(f"Day {self.Day} has began, do you want to check {self.name}'s stats?")
+        if Day_begin.lower() == "yes":
+            print(f"{self.__dict__}")
+        elif Day_begin.lower() == "no":
+            
         priorities = []
+        options = ["play, feed, clean"]
         self.check_death()
         self.day += 1
         self.hunger != 30
         self.dirty != 30
         self.happiness !=30
-        for i in range(0,1):
-            if self.hunger < 50:
-                priorities.append("feed")
-            elif self.dirty < 50:
-                priorities.append("clean")
-            elif self.happiness < 50:
-                priorities.append("play")
-            priority = random.choice(priorities)
-            if priority == "feed":
-                print(f"{self.name} is hungry.")
-                self.feed()
-            elif priority == "play":
-                print(f"{self.name} is sad, play with her.")
+        if self.hunger < 50:
+            priorities.append("feed")
+        elif self.dirty < 50:
+            priorities.append("clean")
+        elif self.happiness < 50:
+            priorities.append("play")
+        priority = random.choice(priorities)
+        if priority == "feed":
+            print(f"{self.name} is hungry.")
+            self.feed()
+        elif priority == "play":
+            print(f"{self.name} is sad, play with her.")
+            self.play()
+        elif priority == "clean":
+            print(f"{self.name} is dirty, clean her.")
+            self.clean()
+        else:
+            activity = random.choice(options)
+            print(f"{self.name} is doing pretty well, keep it up.")
+            if activity == "play":
                 self.play()
-            elif priority == "clean":
-                print(f"{self.name} is dirty, clean her.")
+            if activity == "feed":
+                self.feed()
+            if activity == "clean":
                 self.clean()
         self.sleep()
         
@@ -189,7 +203,7 @@ story = input("You found a stray dog in the freezing rain and took it in. You mu
 if story == "yes":
     print("........Boom!, the door slams behind you as you bring her in, day 1 begins......")
     x = input("What do you want to name your new dog?")
-    x = Dog(f"{x}", 0, 0, 0, 0, 1)
+    x = Dog(f"{x}", 31, 20, 20, 31, 31)
     x.Day_1()
 elif story == "no":
     print("Ok, if you must.")
