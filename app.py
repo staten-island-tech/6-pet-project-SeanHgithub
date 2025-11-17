@@ -36,12 +36,11 @@ class Dog:
         if y == "fetch":
             self.happiness += random.randint(50,80)
         elif y == "tug of war":
-            happy += random.randint(40,60)
+            self.happiness += random.randint(40,60)
         elif y == "hide and seek":
-            happy += random.randint(20,40)
+            self.happiness += random.randint(20,40)
         else:
             print(f"invalid action, you won't be able to feed {self.name} again until tomorrow(sorry)")
-        self.happiness += happy
         if self.happiness > 100:
             self.happiness = 100
         print(f"{self.name} played {y} and her happiness is {self.happiness}")
@@ -68,10 +67,9 @@ class Dog:
         t = x + z
         t *= 0.5
         self.energetic += t
-        day += 1
         if self.energetic > 100:
             self.energetic = 100
-        print(f"{self.name} slept on the {y} for {x} hours and her energy is at {self.energetic}")
+        print(f"{self.name} slept on the {y} for {x/10} hours and her energy is at {self.energetic}")
 
         self.Day_count()
     def feed(self):
@@ -92,26 +90,25 @@ class Dog:
 
     
     
-    def dirty(self):
+    def clean(self):
         x = input(f"How do you want to clean {self.name}?(bath, brush, scrub, shampoo)")
         if x == "bath":
-            clean += random.randint(60,80)
+            self.dirty += random.randint(60,80)
         elif x == "scrub":
-            clean += random.randint(40,60)
+            self.dirty += random.randint(40,60)
         elif x == "brush":
-            clean += random.randint(20,40)
+            self.dirty += random.randint(20,40)
         elif x == "shampoo":
-            clean += random.randint(10,20)
-        else:
+            self.dirty += random.randint(10,30)
             print(f"invalid action, you won't be able to clean {self.name} again until tomorrow(sorry)")
-        self.dirty += clean
         if self.dirty > 100:
             self.dirty = 100
         print(f"you {x}ed {self.name} and her cleanliness is now {self.dirty} ")
-            
+
     def death(self, reason):
          print(f"You let {self.name} die from {reason} after {self.day} day(s)")
          exit()
+
     def check_death(self):
         if self.hunger == 0 and self.day > 2:
             self.death("starvation")
@@ -121,6 +118,7 @@ class Dog:
             self.death("depression")
         elif self.energetic == 0 and self.day > 2:
             self.death("sleep deprivation")
+
     def Day_1(self):
         self.day = 1
         y = False
@@ -146,7 +144,6 @@ class Dog:
                 y = True
             else:
                 print("Invalid response, try again. (bed, chair, floor, lawn)")
-        
         y = False
     def Day_2(self):
         self.day = 2
@@ -165,22 +162,23 @@ class Dog:
         self.hunger != 30
         self.dirty != 30
         self.happiness !=30
-        if self.hunger < 50:
-            priorities.append("feed")
-        elif self.dirty < 50:
-            priorities.append("clean")
-        elif self.happiness < 50:
-            priorities.append("play")
-        priority = random.choice(priorities)
-        if priority == "feed":
-            print(f"{self.name} is hungry.")
-            self.feed()
-        elif priority == "play":
-            print(f"{self.name} is sad, play with her.")
-            self.play()
-        elif priority == "clean":
-            print(f"{self.name} is dirty, clean her.")
-            self.dirty()
+        for i in range(0,1):
+            if self.hunger < 50:
+                priorities.append("feed")
+            elif self.dirty < 50:
+                priorities.append("clean")
+            elif self.happiness < 50:
+                priorities.append("play")
+            priority = random.choice(priorities)
+            if priority == "feed":
+                print(f"{self.name} is hungry.")
+                self.feed()
+            elif priority == "play":
+                print(f"{self.name} is sad, play with her.")
+                self.play()
+            elif priority == "clean":
+                print(f"{self.name} is dirty, clean her.")
+                self.clean()
         self.sleep()
         
 
