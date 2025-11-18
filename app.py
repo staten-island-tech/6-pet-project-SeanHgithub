@@ -156,11 +156,11 @@ class Dog:
         if self.day == 14 and self.alive == True:
             print(f"{self.name} survived for 2 weeks and is ready to go to the vet. CONGRATULATIONS!")
     def Day_count(self):
-        Day_begin = input(f"Day {self.Day} has began, do you want to check {self.name}'s stats?")
+        Day_begin = input(f"Day {self.day} has began, do you want to check {self.name}'s stats?")
         if Day_begin.lower() == "yes":
             print(f"{self.__dict__}")
         elif Day_begin.lower() == "no":
-            
+            print("Ok, go on.")
         priorities = []
         options = ["play, feed, clean"]
         self.check_death()
