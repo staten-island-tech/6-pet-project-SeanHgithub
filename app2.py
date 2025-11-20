@@ -153,8 +153,8 @@ class Dog:
 
     
     def check_win(self):
-        if self.day == 14 and self.alive == True:
-            print(f"{self.name} survived for 2 weeks and is ready to go to the vet. CONGRATULATIONS!")
+        if self.day == 10 and self.alive == True:
+            print(f"{self.name} survived for 10 days and is ready to go to the vet. CONGRATULATIONS!")
             exit()
     def Day_count(self):
         self.day += 1
@@ -169,41 +169,37 @@ class Dog:
             print(f"{self.__dict__}")
         elif Day_begin.lower() == "no":
             print("Ok, go on.")
-            for i in range(2):
-                priorities = []
-                options = ["play", "feed", "clean"]
-                self.check_death()
-                if self.hunger < 50:
-                    priorities.append("feed")
-                if self.dirty < 50:
-                    priorities.append("clean")
-                if self.happiness < 50:
-                    priorities.append("play")
-                if len(priorities) == 0:
-                    activity = random.choice(options)
-                    if activity == "play":
-                        self.play()
-                    elif activity == "feed":
-                        self.feed()
-                    elif activity == "clean":
-                        self.clean()
-                    print(f"{self.name} is doing pretty well, keep it up.")
-                else:
-                    priority = random.choice(priorities)
-                    if priority == "feed":
-                        print(f"{self.name} is hungry.")
-                        self.feed()
-                    elif priority == "play":
-                        print(f"{self.name} is sad, play with her.")
-                        self.play()
-                    elif priority == "clean":
-                        print(f"{self.name} is dirty, clean her.")
-                        self.clean()
+        for i in range(2):
+            priorities = []
+            options = ["play", "feed", "clean"]
+            self.check_death()
+            if self.hunger < 50:
+                priorities.append("feed")
+            if self.dirty < 50:
+                priorities.append("clean")
+            if self.happiness < 50:
+                priorities.append("play")
+            if len(priorities) == 0:
+                activity = random.choice(options)
+                if activity == "play":
+                    self.play()
+                elif activity == "feed":
+                    self.feed()
+                elif activity == "clean":
+                    self.clean()
+                print(f"{self.name} is doing pretty well, keep it up.")
+            else:
+                priority = random.choice(priorities)
+                if priority == "feed":
+                    print(f"{self.name} is hungry.")
+                    self.feed()
+                elif priority == "play":
+                    print(f"{self.name} is sad, play with her.")
+                    self.play()
+                elif priority == "clean":
+                    print(f"{self.name} is dirty, clean her.")
+                    self.clean()
         self.sleep()
-
-
-
-
 
 
 story = input("You found a stray dog in the freezing rain and took it in. You must foster her over the next two weeks by feeding, cleaning, and playing with the dog, as well as giving it a place to sleep. Do you accept this challenge?")
